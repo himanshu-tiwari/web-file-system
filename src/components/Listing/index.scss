@@ -28,11 +28,11 @@
     }
     
     .file-div::before {
-        content: '.html';
+        content: '.'attr(data-extension);
         font-size: 1rem;
         position: absolute;
         bottom: 4.2rem;
-        right: 2.5rem;
+        right: 2.7rem;
         color: #fff;
     }
 

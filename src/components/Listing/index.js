@@ -7,14 +7,14 @@ import create from '../../assets/icons/create.png';
 const Listing = (props) => {
     return(
         <div className="listing">
-            <div className="file-folder-div file-div">
+            <div className="file-folder-div file-div" data-extension="html">
                 <img src={file} alt="file-icon" />
                 <p>index.html</p>
             </div>
 
-            <div className="file-folder-div file-div">
+            <div className="file-folder-div file-div" data-extension="js">
                 <img src={file} alt="file-icon" />
-                <p>index.html</p>
+                <p>index.js</p>
             </div>
 
             <div className="file-folder-div">
