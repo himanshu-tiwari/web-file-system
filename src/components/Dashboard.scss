@@ -1,3 +1,11 @@
 .dashboard {
-    background: #000;
+    @media(min-width: 768px) {
+        .main {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 18.29rem;
+            bottom: 0;
+        }
+    }
 }

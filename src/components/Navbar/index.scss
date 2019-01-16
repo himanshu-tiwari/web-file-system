@@ -1,0 +1,24 @@
+.navbar {
+    padding-top: 1.71rem;
+    padding-left: 5.02rem;
+    font-size: 1.71rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    img {
+        max-width: 100%;
+        vertical-align: middle;
+        margin-right: 1.99rem;
+    }
+
+    .directory-name {
+        color: #81878C;
+    }
+    .directory-name:last-of-type {
+        color: #001800;
+    }
+
+    .slash {
+        color: #81878C;
+    }
+}
