@@ -1,0 +1,44 @@
+.listing {
+    margin: 3.21rem 3.36rem;
+    font-family: lato;
+    color: #535B62;
+    font-size: 1.14rem;
+
+    .file-folder-div {
+        text-align: center;
+        display: inline-block;
+        padding: 0.96rem;
+        margin-left: 4.11rem;
+        position: relative;
+        border-radius: 10px;
+        cursor: pointer;
+
+        img {
+            max-width: 100%;
+        }
+        p {
+            margin-bottom: 0;
+        }
+    }
+    .file-folder-div:hover {
+        background: #E6F5FF;
+    }
+    @media(min-width: 640px) {
+        .file-folder-div:first-of-type {
+            margin-left: 0;
+        }
+    }
+    
+    .file-div::before {
+        content: '.html';
+        font-size: 1rem;
+        position: absolute;
+        bottom: 4.2rem;
+        right: 2.5rem;
+        color: #fff;
+    }
+
+    .create-div:hover {
+        background: transparent;
+    }
+}
