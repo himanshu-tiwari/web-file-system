@@ -13,6 +13,9 @@ class Dashboard extends Component {
         if (e) {
             e.preventDefault();
         }
+        if (id) {
+            id = id.toLowerCase().split(" ").join("~");
+        }
         this.setState({
             ...this.state,
             displayOptionsFor: id
