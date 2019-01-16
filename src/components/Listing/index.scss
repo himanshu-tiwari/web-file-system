@@ -8,7 +8,7 @@
         text-align: center;
         display: inline-block;
         padding: 0.96rem;
-        margin-left: 4.11rem;
+        margin-right: 4.11rem;
         position: relative;
         border-radius: 10px;
         cursor: pointer;
@@ -23,10 +23,8 @@
     .file-folder-div:hover {
         background: #E6F5FF;
     }
-    @media(min-width: 640px) {
-        .file-folder-div:first-of-type {
-            margin-left: 0;
-        }
+    .file-folder-div:last-of-type {
+        margin-right: 0;
     }
     
     .file-div::before {
