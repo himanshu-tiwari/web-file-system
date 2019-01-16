@@ -3,6 +3,7 @@ import './Dashboard.scss';
 import Sidebar from './Sidebar';
 import Navbar from './Navbar';
 import Listing from './Listing';
+import InfoModal from './InfoModal';
 
 class Dashboard extends Component {
     state = {
@@ -34,6 +35,10 @@ class Dashboard extends Component {
                     <Listing
                         toggleOptionsMenu={this.toggleOptionsMenu}
                         displayOptionsFor={displayOptionsFor}
+                    />
+
+                    <InfoModal
+                        currentTarget={displayOptionsFor}
                     />
                 </div>
             </div>
