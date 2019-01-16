@@ -28,6 +28,8 @@
             font-size: 1.14rem;
             color: #2F363F;
             cursor: pointer;
+            overflow: hidden;
+            text-overflow: ellipsis;
 
             .gap {
                 flex: 1;
