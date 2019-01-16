@@ -1,0 +1,30 @@
+.options-menu {
+    position: absolute;
+    bottom: -11rem;
+    right: -7rem;
+    background: #fff;
+    z-index: 9;
+    border: 1px solid rgba(221,224,228,0.5);
+    border-radius: 8px;
+    box-shadow: 0 12px 24px 0 rgba(0,0,0,0.05);
+    width: 159px;
+
+    p {
+        padding-left: 1.71rem;
+        padding-top: 1.25rem;
+        padding-bottom: 1.25rem;
+        margin: 0;
+        color: #535B62;
+        font-size: 1.14rem;
+        font-family: lato;
+        text-align: left;
+    }
+    p:hover{
+        background: #EEEFF1;
+        cursor: pointer;
+    }
+
+    .delete {
+        color: #FF5942;
+    }
+}

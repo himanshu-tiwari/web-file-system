@@ -3,10 +3,13 @@ import './index.scss';
 import file from '../../assets/icons/file.png';
 import folder from '../../assets/icons/folder.png';
 import create from '../../assets/icons/create.png';
+import OptionsMenu from '../OptionsMenu';
 
 const Listing = (props) => {
+    const { displayOptionsFor, toggleOptionsMenu } = props;
+
     return(
-        <div className="listing">
+        <div className="listing" onClick={() => toggleOptionsMenu(null)}>
             <div className="file-folder-div file-div" data-extension="html">
                 <img src={file} alt="file-icon" />
                 <p>index.html</p>
@@ -17,19 +20,16 @@ const Listing = (props) => {
                 <p>index.js</p>
             </div>
 
-            <div className="file-folder-div">
+            <div className="file-folder-div" onContextMenu={(e) => toggleOptionsMenu(e, "Assets".toLowerCase())}>
                 <img src={folder} alt="file-icon" />
                 <p>Assets</p>
+                { displayOptionsFor==="Assets".toLowerCase() && <OptionsMenu /> }
             </div>
 
-            <div className="file-folder-div">
+            <div className="file-folder-div" onContextMenu={(e) => toggleOptionsMenu(e, "Other Assets".toLowerCase().split(" ").join("~"))}>
                 <img src={folder} alt="file-icon" />
-                <p>Assets</p>
-            </div>
-
-            <div className="file-folder-div">
-                <img src={folder} alt="file-icon" />
-                <p>Assets</p>
+                <p>Other Assets</p>
+                { displayOptionsFor==="Other Assets".toLowerCase().split(" ").join("~") && <OptionsMenu /> }
             </div>
             
             <div className="file-folder-div create-div">

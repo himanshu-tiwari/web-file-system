@@ -5,14 +5,33 @@ import Navbar from './Navbar';
 import Listing from './Listing';
 
 class Dashboard extends Component {
+    state = {
+        displayOptionsFor: null
+    };
+
+    toggleOptionsMenu = (e, id) => {
+        if (e) {
+            e.preventDefault();
+        }
+        this.setState({
+            ...this.state,
+            displayOptionsFor: id
+        })
+    };
+
     render() {
+        const { displayOptionsFor } = this.state;
         return(
-            <div className="dashboard">
+            <div className="dashboard" onClick={() => this.toggleOptionsMenu(null)}>
                 <Sidebar />
 
                 <div className="main">
                     <Navbar />
-                    <Listing />
+                    
+                    <Listing
+                        toggleOptionsMenu={this.toggleOptionsMenu}
+                        displayOptionsFor={displayOptionsFor}
+                    />
                 </div>
             </div>
         );
