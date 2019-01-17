@@ -4,14 +4,16 @@ import Sidebar from './Sidebar';
 import Navbar from './Navbar';
 import Listing from './Listing';
 import InfoModal from './InfoModal';
+import CreateNewModal from './CreateNewModal';
 
 class Dashboard extends Component {
     state = {
         displayOptionsFor: null,
-        displayInfoModal: false
+        displayInfoModal: false,
+        displayCreateNewModal: false
     };
 
-    toggleState = (field, options) => {
+    toggleState = (field) => {
         this.setState({
             ...this.state,
             [field]: !this.state[field],
@@ -35,7 +37,7 @@ class Dashboard extends Component {
     }
 
     render() {
-        const { displayOptionsFor, displayInfoModal } = this.state;
+        const { displayOptionsFor, displayInfoModal, displayCreateNewModal } = this.state;
         return(
             <div className="dashboard">
                 <Sidebar />
@@ -48,11 +50,25 @@ class Dashboard extends Component {
                             e.preventDefault();
                             this.changeState("displayOptionsFor", id)
                         }}
-                        toggleInfoModal={() => this.toggleState("displayInfoModal")}
                         displayOptionsFor={displayOptionsFor}
+                        toggleInfoModal={() => this.toggleState("displayInfoModal")}
+                        toggleCreateNewModal={() => this.toggleState("displayCreateNewModal")}
                     />
 
-                    { displayInfoModal && <InfoModal currentTarget={displayOptionsFor} toggleInfoModal={() => this.toggleState("displayInfoModal")} /> }
+                    { 
+                        displayInfoModal
+                        &&
+                        <InfoModal
+                            currentTarget={displayOptionsFor}
+                            toggleInfoModal={() => this.toggleState("displayInfoModal")}
+                        />
+                    }
+
+                    { 
+                        displayCreateNewModal
+                        &&
+                        <CreateNewModal toggleCreateNewModal={() => this.toggleState("displayCreateNewModal")} />
+                    }
                 </div>
             </div>
         );

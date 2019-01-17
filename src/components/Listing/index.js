@@ -6,7 +6,7 @@ import create from '../../assets/icons/create.png';
 import OptionsMenu from '../OptionsMenu';
 
 const Listing = (props) => {
-    const { displayOptionsFor, toggleOptionsMenu, toggleInfoModal } = props;
+    const { displayOptionsFor, toggleOptionsMenu, toggleInfoModal, toggleCreateNewModal } = props;
 
     return(
         <div className="listing">
@@ -35,7 +35,7 @@ const Listing = (props) => {
             </div>
             
             <div className="file-folder-div create-div">
-                <img src={create} alt="file-icon" />
+                <img src={create} alt="file-icon" onClick={toggleCreateNewModal} />
             </div>
         </div>
     );

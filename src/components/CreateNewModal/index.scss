@@ -1,0 +1,112 @@
+.create-new-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(241, 241, 242, 0.8);
+    padding-top: 10vw;
+
+    .create-new-modal {
+        background: #FFFFFF;
+        border: 1px solid rgba(221,224,228,0.70);
+        box-shadow: 0 16px 64px 0 rgba(0,0,0,0.08);
+        border-radius: 8px;
+        color: #2F363F;
+        width: 22.57rem;
+        max-width: 80%;
+        text-align: center;
+        
+        margin: auto;
+
+        .text {
+            position: relative;
+
+            .heading {
+                font-size: 1.29rem;
+                margin-top: 1.79rem;
+                margin-bottom: 1.14rem;
+            }
+
+            .close {
+                position: absolute;
+                top: 0;
+                right: 1.79rem;
+                max-width: 100%;
+                cursor: pointer;
+            }
+        }
+
+        .details {
+            margin-bottom: 3rem;
+
+            p {
+                display: flex;
+                margin-bottom: 2.29rem;
+            }
+            .part {
+                flex: 1;
+                font-size: 1rem;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
+                border: 1px solid #DDE0E4;
+                color: #535B62;
+            }
+            .left {
+                padding-right: 0.57rem;
+                margin-left: 6rem;
+                border-top-left-radius: 8px;
+                border-bottom-left-radius: 8px;
+            }
+            .right {
+                padding-left: 0.57rem;
+                margin-right: 6rem;
+                border-top-right-radius: 8px;
+                border-bottom-right-radius: 8px;
+            }
+            .active {
+                color: #fff;
+                background: #4AB7FF;
+                border: 1px solid #4AB7FF;
+            }
+
+            input {
+                display: block;
+                width: 80%;
+                margin-left: 7%;
+                height: 2.86rem;
+                border-radius: 8px;
+                border: 1px solid #DDE0E4;
+                margin-bottom: 1.14rem;
+                font-size: 1rem;
+                padding-left: 1.14rem;
+                font-family: lato;
+                outline: none;
+            }
+            input::placeholder {
+                font-size: 1rem;
+                color: #AFB2B6;
+                // padding-left: 1.14rem;
+                font-family: lato;
+            }
+            input:focus,
+            input:focus-within {
+                border: 2px solid #909294;
+            }
+
+            button {
+                color: #fff;
+                background: #4AB7FF;
+                border: 1px solid #4AB7FF;
+                font-size: 1rem;
+                padding: 0.8rem 6.3rem;
+                width: 85%;
+                border-radius: 8px;
+                cursor: pointer;
+                outline: none;
+            }
+        }
+    }
+}
