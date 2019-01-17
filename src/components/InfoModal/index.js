@@ -5,12 +5,14 @@ import file from '../../assets/icons/file.png';
 import folder from '../../assets/icons/folder.png';
 
 const InfoModal = (props) => {
+    const { toggleInfoModal } = props;
+
     return(
         <div className="info-modal-overlay">
             <div className="info-modal">
                 <div className="text">
                     <p className="heading">File Info</p>
-                    <img src={close} alt="close-icon" className="close" />
+                    <img src={close} alt="close-icon" className="close" onClick={toggleInfoModal} />
 
                     <div data-extension="html" className="file-div">
                         <img src={file} alt="file-icon" />
