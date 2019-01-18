@@ -58,13 +58,13 @@
                 color: #535B62;
             }
         }
+    }
 
-        li:hover > .internal-directories {
-            display: block;
-        }
-        li:hover > .text-span img {
-            transform: rotate(180deg);
-        }
+    ul.active > li > .internal-directories {
+        display: block;
+    }
+    ul.active > li > .text-span img {
+        transform: rotate(180deg);
     }
 }
 

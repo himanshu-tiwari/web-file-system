@@ -5,8 +5,9 @@ import file from '../../assets/icons/file.png';
 import folder from '../../assets/icons/folder.png';
 
 const InfoModal = (props) => {
-    const { toggleInfoModal } = props;
-
+    const { toggleInfoModal, currentTarget } = props;
+    const { name, size, creator, createdAt } = currentTarget[0];
+    
     return(
         <div className="info-modal-overlay">
             <div className="info-modal">
@@ -21,22 +22,22 @@ const InfoModal = (props) => {
                     <div className="details">
                         <p>
                             <span className="left part">Name:</span>
-                            <span className="right part">index.html</span>
+                            <span className="right part">{ name }</span>
                         </p>
 
                         <p>
                             <span className="left part">Size:</span>
-                            <span className="right part">542kb</span>
+                            <span className="right part">{ size }</span>
                         </p>
 
                         <p>
                             <span className="left part">Creator name:</span>
-                            <span className="right part">Ankur</span>
+                            <span className="right part">{ creator }</span>
                         </p>
 
                         <p>
                             <span className="left part">Created date:</span>
-                            <span className="right part">24th Aug, 2018</span>
+                            <span className="right part">{ createdAt }</span>
                         </p>
                     </div>
                 </div>

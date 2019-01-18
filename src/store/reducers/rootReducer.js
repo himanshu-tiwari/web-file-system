@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import fileReducer from './fileReducer';
+import listReducer from './listReducer';
 import folderReducer from './folderReducer';
 
 const rootReducer = combineReducers({
-    'file': fileReducer,
-    'folder': folderReducer
+    'folder': folderReducer,
+    'list': listReducer,
 });
 
 export default rootReducer;
