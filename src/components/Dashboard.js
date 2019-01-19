@@ -7,6 +7,7 @@ import InfoModal from './InfoModal';
 import CreateNewModal from './CreateNewModal';
 import { connect } from 'react-redux';
 import { createFolder, changeFolder } from '../store/actions/folderActions';
+import { stringify } from 'querystring';
 
 class Dashboard extends Component {
     state = {
@@ -19,8 +20,7 @@ class Dashboard extends Component {
     toggleState = (field) => {
         this.setState({
             ...this.state,
-            [field]: !this.state[field],
-            displayOptions: false
+            [field]: !this.state[field]
         });
     };
 
@@ -83,7 +83,11 @@ class Dashboard extends Component {
                     <Listing
                         toggleOptionsMenu={(e, id) => {
                             e.preventDefault();
-                            this.changeState("displayOptionsFor", id);
+                            (
+                                typeof(id) === "string" &&
+                                stringify.length
+                            ) ? this.changeState("displayOptionsFor", id)
+                            : this.toggleState("displayOptions");
                         }}
                         displayOptions={displayOptions}
                         displayOptionsFor={displayOptionsFor}

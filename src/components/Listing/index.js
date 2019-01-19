@@ -37,6 +37,7 @@ const Listing = (props) => {
                         <OptionsMenu
                             toggleInfoModal={toggleInfoModal}
                             peekInFolder={() => peekInFolder(id)}
+                            toggleOptionsMenu={toggleOptionsMenu}
                         />
                     }
                 </div>
@@ -60,6 +61,7 @@ const Listing = (props) => {
                         <OptionsMenu
                             toggleInfoModal={toggleInfoModal} 
                             peekInFolder={() => peekInFolder(id)}
+                            toggleOptionsMenu={toggleOptionsMenu}
                         />
                     }
                 </div>
