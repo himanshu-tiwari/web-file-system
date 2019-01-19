@@ -3,12 +3,8 @@ import './index.scss';
 import down from '../../assets/icons/down.svg';
 
 const Sidebar = (props) => {
-    const { structure, disabled, peekInFolder } = props;
+    const { structure, disabled, peekInFolder, currentFolder } = props;
     const { contents } = structure.root;
-    const displayChildren = (e) => {
-        e.target.closest("li").classList.toggle("active");
-        peekInFolder(e.target.closest("li").id);
-    };
 
     const createStructure = (contents) => {
         return contents.map(fileFolder => {
@@ -28,11 +24,17 @@ const Sidebar = (props) => {
                 }) : [];
 
                 if (type === "folder") {
+                    const active = (id === currentFolder) || (structure[currentFolder].path.indexOf(id) > -1) ;
+                    const current = id === currentFolder;
+                    
                     if (contents.length) {
                         return(
-                            <li key={id} id={id}>
-                                <span className="text-span">
-                                    { name } <span className="gap"></span> <img className="up" src={down} alt="down" />
+                            <li
+                                key={id}
+                                className={(active ? 'active ' : '') + (current ? 'current' : '') + ''}
+                            >
+                                <span className="text-span" onClick={() => peekInFolder(id)}>
+                                    { name } <span className="gap"onClick={() => peekInFolder(id)}></span> <img className="up" src={down} alt="down" onClick={() => peekInFolder(id)} />
                                 </span>
                                 <ul className="internal-directories">
                                     { createStructure(contents) }
@@ -41,8 +43,11 @@ const Sidebar = (props) => {
                         );
                     } else {
                         return(
-                            <li key={id} id={id}>
-                                <span className="text-span">
+                            <li
+                                key={id}
+                                className={(active ? 'active ' : '') + (current ? 'current' : '') + ''}
+                            >
+                                <span className="text-span" onClick={() => peekInFolder(id)}>
                                     { name }
                                 </span>
                             </li>
@@ -66,7 +71,7 @@ const Sidebar = (props) => {
         <div className={`sidebar ${disabled ? 'disabled' : ''}`}>
             <p className="root-folder" onClick={() => peekInFolder("root")}>ROOT</p>
 
-            <ul className="directory-structure" onClick={displayChildren}>
+            <ul className="directory-structure">
                 { listStructure }
             </ul>
         </div>

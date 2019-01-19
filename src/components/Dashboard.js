@@ -47,7 +47,7 @@ class Dashboard extends Component {
     render() {
         const { displayOptions, displayOptionsFor, displayInfoModal, displayCreateNewModal } = this.state;
 
-        let { contents, path, createFolder, structure } = this.props;
+        let { contents, path, createFolder, structure, currentFolder } = this.props;
         contents = (
             typeof(contents) === "object" &&
             contents instanceof Array &&
@@ -66,6 +66,7 @@ class Dashboard extends Component {
                     structure={structure}
                     disabled={displayInfoModal || displayCreateNewModal}
                     peekInFolder={(id) => this.peekInFolder(id)}
+                    currentFolder={currentFolder}
                 />
 
                 <div className="main">
@@ -77,6 +78,7 @@ class Dashboard extends Component {
                         }}
                         parents={parents}
                         peekInFolder={(id) => this.peekInFolder(id)}
+                        currentFolder={currentFolder}
                     />
                     
                     <Listing
@@ -131,6 +133,7 @@ const mapStateToProps = (state) => {
         contents,
         parents,
         path,
+        currentFolder
     };
 };
 

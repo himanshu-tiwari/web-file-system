@@ -65,6 +65,9 @@
         li.active > .text-span img {
             transform: rotate(180deg);
         }
+        li.current > .text-span {
+            background: #EEEFF1;
+        }
     }
 }
 .sidebar.disabled {
