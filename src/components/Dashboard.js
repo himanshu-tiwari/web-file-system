@@ -6,6 +6,7 @@ import Listing from './Listing';
 import InfoModal from './InfoModal';
 import CreateNewModal from './CreateNewModal';
 import { connect } from 'react-redux';
+import { createFolder, changeFolder } from '../store/actions/folderActions';
 
 class Dashboard extends Component {
     state = {
@@ -41,18 +42,32 @@ class Dashboard extends Component {
     render() {
         const { displayOptions, displayOptionsFor, displayInfoModal, displayCreateNewModal } = this.state;
 
-        let { contents, parents, path, list } = this.props;
-        contents = typeof(contents) === "object" && contents instanceof Array ? contents : []; 
-        parents = typeof(parents) === "object" && Object.keys(parents).length > 0 ? parents : {};
-        path = typeof(path) === "string" ? path: '';
+        let { contents, path, list, createFolder, structure, changeFolder } = this.props;
+        contents = (
+            typeof(contents) === "object" &&
+            contents instanceof Array &&
+            contents.length > 0
+        ) ? contents.map(index => structure[index]) : {};
+        path = typeof(path) === "string" ? path : '';
         list = typeof(list) === "object" && Object.keys(list).length > 0 ? list : {};
+        const parents = path.trim().split('/').filter(parent => typeof(parent) === "string" && parent.length);
+
+        console.log(this.state);
 
         return(
             <div className="dashboard">
-                <Sidebar list={list} />
+                <Sidebar list={list} disabled={displayInfoModal || displayCreateNewModal} />
 
                 <div className="main">
-                    <Navbar parents={parents} path={path} />
+                    <Navbar
+                        structure={structure}
+                        path={path}
+                        folderUp={() => {
+                            const id = parents[parents.length -1];
+                            typeof(id) === "string" && id.length > 0 ? changeFolder(id) : changeFolder("root");
+                        }}
+                        parents={parents}
+                    />
                     
                     <Listing
                         toggleOptionsMenu={(e, id) => {
@@ -63,7 +78,7 @@ class Dashboard extends Component {
                         displayOptionsFor={displayOptionsFor}
                         toggleInfoModal={() => this.toggleState("displayInfoModal")}
                         toggleCreateNewModal={() => this.toggleState("displayCreateNewModal")}
-                        contents={contents}
+                        contents={Object.values(contents)}
                     />
 
                     { 
@@ -71,7 +86,6 @@ class Dashboard extends Component {
                         &&
                         <InfoModal
                             currentTarget={contents.filter(fileFolder => {
-                                console.log(fileFolder.name.toLowerCase().split(" ").join("~"), displayOptionsFor);
                                 return fileFolder.name.toLowerCase().split(" ").join("~") === displayOptionsFor;
                             })}
                             toggleInfoModal={() => this.toggleState("displayInfoModal")}
@@ -81,7 +95,10 @@ class Dashboard extends Component {
                     { 
                         displayCreateNewModal
                         &&
-                        <CreateNewModal toggleCreateNewModal={() => this.toggleState("displayCreateNewModal")} />
+                        <CreateNewModal
+                            toggleCreateNewModal={() => this.toggleState("displayCreateNewModal")}
+                            createFolder={createFolder}
+                        />
                     }
                 </div>
             </div>
@@ -90,9 +107,12 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { contents, parents, path } = state.folder;
+    const { structure, currentFolder } = state.folder;
+    const folderContents = typeof(currentFolder) === "string" && currentFolder.length > 0 ? structure[currentFolder] : structure.root;
+    const { contents, parents, path } = folderContents;
 
     return {
+        structure,
         contents,
         parents,
         path,
@@ -100,4 +120,11 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(Dashboard);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        createFolder: (folder) => dispatch(createFolder(folder)),
+        changeFolder: (id) => dispatch(changeFolder(id))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
