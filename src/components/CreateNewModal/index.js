@@ -7,7 +7,8 @@ class CreateNewModal extends Component {
         name: '',
         creator: '',
         size: '',
-        date: ''
+        date: '',
+        type: 'folder'
     };
 
     handleChange = (field, value) => {
@@ -18,11 +19,12 @@ class CreateNewModal extends Component {
     };
 
     handleSubmit = () => {
-        console.log(this.state);
+        // console.log(this.state);
+        this.props.createFolder(this.state);
     };
 
     render() {
-        const { name, creator, size, date } = this.state;
+        const { name, creator, size, date, type } = this.state;
         const { toggleCreateNewModal } = this.props;
 
         return(
@@ -35,16 +37,46 @@ class CreateNewModal extends Component {
                         <div className="details">
 
                         <p>
-                            <span className="part left">File</span>
-                            <span className="part right active">Folder</span>
+                            <span
+                                className={`part left ${type==="file" && 'active'}`}
+                                onClick={() => this.handleChange("type", "file")}
+                            >File</span>
+                            <span
+                                className={`part right ${type==="folder" && 'active'}`}
+                                onClick={() => this.handleChange("type", "folder")}
+                            >Folder</span>
                         </p>
-                            <input type="text" required placeholder="Name" value={name} onChange={(e) => this.handleChange("name", e.target.value)} />
+                            <input
+                                type="text"
+                                required
+                                placeholder="Name"
+                                value={name}
+                                onChange={(e) => this.handleChange("name", e.target.value)}
+                            />
 
-                            <input type="text" required placeholder="Creator" value={creator} onChange={(e) => this.handleChange("creator", e.target.value)} />
+                            <input
+                                type="text"
+                                required
+                                placeholder="Creator"
+                                value={creator}
+                                onChange={(e) => this.handleChange("creator", e.target.value)}
+                            />
 
-                            <input type="number" required placeholder="Size" value={size} onChange={(e) => this.handleChange("size", e.target.value)} />
+                            <input
+                                type="text"
+                                required
+                                placeholder="Size"
+                                value={size}
+                                onChange={(e) => this.handleChange("size", e.target.value)}
+                            />
 
-                            <input type="date" required placeholder="Date" value={date} onChange={(e) => this.handleChange("date", e.target.value)} />
+                            <input
+                                type="date"
+                                required
+                                placeholder="Date"
+                                value={date}
+                                onChange={(e) => this.handleChange("date", e.target.value)}
+                            />
 
                             <button onClick={this.handleSubmit}>Create</button>
                         </div>
