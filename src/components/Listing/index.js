@@ -25,7 +25,7 @@ const Listing = (props) => {
                 <div
                     className="file-folder-div file-div"
                     data-extension={extension}
-                    onContextMenu={(e) => toggleOptionsMenu(e, name)}
+                    onContextMenu={(e) => toggleOptionsMenu(e, id)}
                     key={name}
                     id={id}
                 >
@@ -47,7 +47,7 @@ const Listing = (props) => {
             return(
                 <div
                     className="file-folder-div"
-                    onContextMenu={(e) => toggleOptionsMenu(e, name)}
+                    onContextMenu={(e) => toggleOptionsMenu(e, id)}
                     onDoubleClick={(e) => peekInFolder(id)}
                     key={name}
                     id={id}

@@ -25,18 +25,17 @@ class Dashboard extends Component {
     };
 
     changeState = (field, value) => {
-        if (field === "displayOptionsFor" && typeof(value) === "string") {
-            this.setState({
-                ...this.state,
-                [field]: value.toLowerCase().split(" ").join("~"),
-                displayOptions: true
-            });
-        } else {
-            this.setState({
-                ...this.state,
-                [field]: value
-            });
-        }
+        this.setState({
+            ...this.state,
+            [field]: value
+        }, () => {
+            if (field === "displayOptionsFor" && typeof(value) === "string") {
+                this.setState({
+                    ...this.state,
+                    displayOptions: true
+                });
+            }
+        });
     }
 
     peekInFolder = (id) => {
@@ -100,7 +99,7 @@ class Dashboard extends Component {
                         <InfoModal
                             currentTarget={contents.filter(fileFolder => {
                                 return fileFolder.id === displayOptionsFor;
-                            })}
+                            })[0]}
                             toggleInfoModal={() => this.toggleState("displayInfoModal")}
                         />
                     }
