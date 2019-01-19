@@ -99,7 +99,7 @@ const initState = {
             type: "file"
         }
     },
-    currentFolder: 'icons'
+    currentFolder: 'project'
 };
 
 const folderReducer = (state = initState, action) => {
@@ -107,17 +107,14 @@ const folderReducer = (state = initState, action) => {
         case 'CREATE_FOLDER':
             console.log(action.data);
             return state;
-            break;
         
         case 'CHANGE_FOLDER':
             return {
                 ...state,
                 currentFolder: action.data
             };
-            break;
         default:
             return state;
-            break;
     }
 };
 
