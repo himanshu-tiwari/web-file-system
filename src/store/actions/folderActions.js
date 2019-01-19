@@ -37,3 +37,15 @@ export const changeFolder = (id) => {
         data: id
     }
 }
+
+export const deleteFolder = (folder) => {
+    if (!(typeof(folder.parent) === "string" && folder.parent.length > 0)) {
+        const parents = folder.path.trim().split('/').filter(parent => parent.trim().length > 0);
+        folder.parent = parents[parents.length -1];
+    }
+
+    return {
+        type: 'DELETE_FOLDER',
+        data: folder
+    }
+}

@@ -39,7 +39,6 @@ export const createFile = (file) => {
 };
 
 export const deleteFile = (file) => {
-    console.log(file);
     if (!(typeof(file.parent) === "string" && file.parent.length > 0)) {
         const parents = file.path.trim().split('/').filter(parent => parent.trim().length > 0);
         file.parent = parents[parents.length -1];

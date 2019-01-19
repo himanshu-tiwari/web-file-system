@@ -132,6 +132,13 @@ const folderReducer = (state = initState, action) => {
                 ...state,
                 error: action.error
             };
+        
+        case 'DELETE_FOLDER':
+            delete state.structure[action.data.id];
+            state.structure[action.data.parent].contents = state.structure[action.data.parent].contents.filter(id => id!==action.data.id);
+            return {
+                ...state
+            };
             
         case 'CHANGE_FOLDER':
             return {

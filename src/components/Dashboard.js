@@ -6,7 +6,7 @@ import Listing from './Listing';
 import InfoModal from './InfoModal';
 import CreateNewModal from './CreateNewModal';
 import { connect } from 'react-redux';
-import { createFolder, changeFolder } from '../store/actions/folderActions';
+import { createFolder, changeFolder, deleteFolder } from '../store/actions/folderActions';
 import { createFile, deleteFile } from '../store/actions/fileActions';
 
 class Dashboard extends Component {
@@ -50,12 +50,23 @@ class Dashboard extends Component {
     render() {
         const { displayOptions, displayOptionsFor, displayInfoModal, displayCreateNewModal } = this.state;
 
-        let { contents, path, createFolder, structure, currentFolder, createFile, deleteFile } = this.props;
+        let {
+            contents,
+            path,
+            createFolder,
+            deleteFolder,
+            structure,
+            currentFolder,
+            createFile,
+            deleteFile
+        } = this.props;
+        
         contents = (
             typeof(contents) === "object" &&
             contents instanceof Array &&
             contents.length > 0
         ) ? contents.map(index => structure[index]) : {};
+        
         path = typeof(path) === "string" ? path : '';
 
         const parents = path
@@ -100,6 +111,7 @@ class Dashboard extends Component {
                         contents={Object.values(contents)}
                         peekInFolder={(id) => this.peekInFolder(id)}
                         deleteFile={(id) => deleteFile(structure[id])}
+                        deleteFolder={(id) => deleteFolder(structure[id])}
                     />
 
                     { 
@@ -151,6 +163,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         createFolder: (folder) => dispatch(createFolder(folder)),
+        deleteFolder: (folder) => dispatch(deleteFolder(folder)),
         changeFolder: (id) => dispatch(changeFolder(id)),
         createFile: (file) => dispatch(createFile(file)),
         deleteFile: (file) => dispatch(deleteFile(file))
