@@ -61,12 +61,15 @@ class Dashboard extends Component {
                 <div className="main">
                     <Navbar
                         structure={structure}
-                        path={path}
                         folderUp={() => {
                             const id = parents[parents.length -1];
                             typeof(id) === "string" && id.length > 0 ? changeFolder(id) : changeFolder("root");
                         }}
                         parents={parents}
+                        peekInFolder={(id) => {
+                            console.log(id);
+                            typeof(id) === "string" && id.length > 0 ? changeFolder(id) : changeFolder("root");
+                        }}
                     />
                     
                     <Listing
