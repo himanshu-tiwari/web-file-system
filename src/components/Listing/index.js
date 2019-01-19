@@ -15,13 +15,14 @@ const Listing = (props) => {
         contents,
         peekInFolder,
         deleteFile,
-        deleteFolder
+        deleteFolder,
+        searchTerm
     } = props;
 
-    const contentList = contents.map(fileFolder => {
+    const createList = (fileFolder) => {
         let { id, name, extension, type } = fileFolder;
         type = typeof(type) === "string" && type.length > 0 ? type : '';
-        
+
         if (type === "file") {
             return(
                 <div
@@ -75,15 +76,34 @@ const Listing = (props) => {
         }
 
         return '';
+    };
+    const contentList = contents.map(fileFolder => {
+        if (typeof(searchTerm) === "string" && searchTerm.length > 0) {
+            if (fileFolder.name.indexOf(searchTerm) > -1) {
+                return createList(fileFolder);
+            } else {
+                return '';
+            }
+        } else {
+            return createList(fileFolder);
+        }
     });
 
     return(
         <div className="listing">
+            {
+                (typeof(searchTerm) === "string" && searchTerm.length > 0) &&
+                <p className="search-results">Search Results</p>
+            }
+
             { contentList }
-            
-            <div className="file-folder-div create-div">
-                <img src={create} alt="file-icon" onClick={toggleCreateNewModal} />
-            </div>
+
+            {
+                (typeof(searchTerm) === "string" && searchTerm.length > 0) ||
+                <div className="file-folder-div create-div">
+                    <img src={create} alt="file-icon" onClick={toggleCreateNewModal} />
+                </div>
+            }
         </div>
     );
 };

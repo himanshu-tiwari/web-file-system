@@ -14,7 +14,8 @@ class Dashboard extends Component {
         displayOptionsFor: null,
         displayOptions: false,
         displayInfoModal: false,
-        displayCreateNewModal: false
+        displayCreateNewModal: false,
+        searchTerm: null
     };
 
     toggleState = (field) => {
@@ -43,12 +44,19 @@ class Dashboard extends Component {
         typeof(id) === "string" && id.length > 0 ? changeFolder(id) : changeFolder("root");
         this.setState({
             ...this.state,
-            displayOptions: false
+            displayOptions: false,
+            searchTerm: null
         });
     }
 
     render() {
-        const { displayOptions, displayOptionsFor, displayInfoModal, displayCreateNewModal } = this.state;
+        const {
+            displayOptions,
+            displayOptionsFor,
+            displayInfoModal,
+            displayCreateNewModal,
+            searchTerm
+        } = this.state;
 
         let {
             contents,
@@ -93,6 +101,8 @@ class Dashboard extends Component {
                         parents={parents}
                         peekInFolder={(id) => this.peekInFolder(id)}
                         currentFolder={currentFolder}
+                        searchTerm={searchTerm}
+                        search={(value) => this.changeState("searchTerm", value)}
                     />
                     
                     <Listing
@@ -108,10 +118,11 @@ class Dashboard extends Component {
                         displayOptionsFor={displayOptionsFor}
                         toggleInfoModal={() => this.toggleState("displayInfoModal")}
                         toggleCreateNewModal={() => this.toggleState("displayCreateNewModal")}
-                        contents={Object.values(contents)}
+                        contents={typeof(searchTerm) === "string" && searchTerm.length > 0 ? Object.values(structure) : Object.values(contents)}
                         peekInFolder={(id) => this.peekInFolder(id)}
                         deleteFile={(id) => deleteFile(structure[id])}
                         deleteFolder={(id) => deleteFolder(structure[id])}
+                        searchTerm={searchTerm}
                     />
 
                     { 

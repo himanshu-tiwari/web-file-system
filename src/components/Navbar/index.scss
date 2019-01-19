@@ -1,29 +1,60 @@
 .navbar {
     padding-top: 1.71rem;
     padding-left: 5.02rem;
+    padding-right: 5.02rem;
     font-size: 1.71rem;
     overflow: hidden;
     text-overflow: ellipsis;
+    display: flex;
 
-    img {
-        max-width: 100%;
-        vertical-align: middle;
-        margin-right: 1.99rem;
-        cursor: pointer;
-    }
-    img.disabled {
-        pointer-events: none;
+
+    .path {
+        display: inline;
+        img {
+            max-width: 100%;
+            vertical-align: middle;
+            margin-right: 1.99rem;
+            cursor: pointer;
+        }
+        img.disabled {
+            pointer-events: none;
+        }
+
+        .directory-name {
+            color: #81878C;
+            cursor: pointer;
+        }
+        .directory-name:last-of-type {
+            color: #001800;
+        }
+
+        .slash {
+            color: #81878C;
+        }
     }
 
-    .directory-name {
-        color: #81878C;
-        cursor: pointer;
-    }
-    .directory-name:last-of-type {
-        color: #001800;
+    .gap {
+        flex: 1;
     }
 
-    .slash {
-        color: #81878C;
+    input {
+        height: 2.29rem;
+        border-radius: 8px;
+        border: 1px solid #DDE0E4;
+        margin-bottom: 1.14rem;
+        font-size: 1rem;
+        padding-left: 1.14rem;
+        font-family: lato;
+        outline: none;
+    }
+    input::placeholder {
+        font-size: 1rem;
+        color: #AFB2B6;
+        // padding-left: 1.14rem;
+        font-family: lato;
+    }
+    input:focus,
+    input:focus-within {
+        border: 2px solid #909294;
     }
 }

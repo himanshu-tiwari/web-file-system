@@ -40,4 +40,13 @@
     .create-div:hover {
         background: transparent;
     }
+
+    .search-results {
+        font-size: 1rem;
+        color: #AFB2B6;
+        /* cursor: pointer; */
+        text-decoration: underline;
+        text-align: right;
+        padding-right: 5rem;
+    }
 }
