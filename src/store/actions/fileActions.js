@@ -1,25 +1,34 @@
-import { stringify } from "querystring";
+import v35 from 'uuid/v5';
 
 export const createFile = (file) => {
-    const { name, path } = file;
-
+    const { name, path, existingKeys } = file;
+    
     if (typeof(name) === "string" && name.length > 0) {
-        file.id = name.trim().split(' ').join('-');
-        const parents = path.split('/').filter(parent => parent.length > 0);
-        file.parent = parents[parents.length - 1];
+        const MY_NAMESPACE = '299f6e91-20fd-4f61-8afc-e6deec6b62d1';
+        file.id = v35(path + name, MY_NAMESPACE);
 
-        if (name.indexOf('.') > -1) {
-            file.extension = name.split('.')[1];
-
-            return {
-                type: 'CREATE_FILE',
-                data: file
-            };
-        } else {
+        if (existingKeys.indexOf(file.id) > -1) {
             return {
                 type: 'CREATE_FILE_ERROR',
-                error: 'No file extension found!'
+                error: 'A file with this name alredy exists! Please choose a new one!'
             };
+        } else {
+            const parents = path.trim().split('/').filter(parent => parent.length > 0);
+            file.parent = parents[parents.length - 1];
+    
+            if (name.indexOf('.') > -1) {
+                file.extension = name.split('.')[1];
+    
+                return {
+                    type: 'CREATE_FILE',
+                    data: file
+                };
+            } else {
+                return {
+                    type: 'CREATE_FILE_ERROR',
+                    error: 'No file extension found!'
+                };
+            }
         }
     } else {
         return {

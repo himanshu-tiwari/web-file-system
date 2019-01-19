@@ -9,11 +9,11 @@ const initState = {
             path: '/',
             type: "folder",
             contents: [
-                "project"
+                "5119b1fc-2d20-5317-a2bd-1287745c894e"
             ]
         },
-        project: {
-            id: "project",
+        "5119b1fc-2d20-5317-a2bd-1287745c894e": {
+            id: "5119b1fc-2d20-5317-a2bd-1287745c894e",
             name: "project",
             size: "10kb",
             creator: "Himanshu",
@@ -21,85 +21,89 @@ const initState = {
             path: 'root/',
             type: "folder",
             contents: [
-                "index.html",
-                "index.js",
-                "assets"
+                "0bcaa66e-21c2-5107-a5a1-5e27739d61db",
+                "534f8804-ea28-5487-9be8-f0c47e01bc3f",
+                "fd77888c-c916-508d-bf55-08423a8c96b6"
             ]
         },
-        "index.html": {
-            id: "index.html",
+        "0bcaa66e-21c2-5107-a5a1-5e27739d61db": {
+            id: "0bcaa66e-21c2-5107-a5a1-5e27739d61db",
             name: "index.html",
             size: "10kb",
             creator: "Himanshu",
             created_at: "January 17, 2019 at 6:25:58 PM UTC+5:30",
             extension: "html",
-            type: "file"
+            type: "file",
+            path: "root/5119b1fc-2d20-5317-a2bd-1287745c894e/",
         },
-        "index.js": {
-            id: "index.js",
+        "534f8804-ea28-5487-9be8-f0c47e01bc3f": {
+            id: "534f8804-ea28-5487-9be8-f0c47e01bc3f",
             name: "index.js",
             size: "10kb",
             creator: "Himanshu",
             created_at: "January 17, 2019 at 6:25:58 PM UTC+5:30",
             extension: "js",
-            type: "file"
+            type: "file",
+            path: "root/5119b1fc-2d20-5317-a2bd-1287745c894e/",
         },
-        assets: {
-            id: "assets",
+        "fd77888c-c916-508d-bf55-08423a8c96b6": {
+            id: "fd77888c-c916-508d-bf55-08423a8c96b6",
             name: "Assets",
             size: "10kb",
             creator: "Himanshu",
             created_at: "January 17, 2019 at 6:25:58 PM UTC+5:30",
             type: "folder",
-            path: "root/project/",
+            path: "root/5119b1fc-2d20-5317-a2bd-1287745c894e/",
             contents: [
-                "images"
+                "40ca135a-ce0c-58e7-9fc0-0509aa28103b",
+                "b47c6a79-f96c-521f-84f2-73b0c09662bf"
             ]
         },
-        images: {
-            id: "images",
+        "40ca135a-ce0c-58e7-9fc0-0509aa28103b": {
+            id: "40ca135a-ce0c-58e7-9fc0-0509aa28103b",
             name: "images",
             size: "10kb",
             creator: "Himanshu",
             created_at: "January 17, 2019 at 6:25:58 PM UTC+5:30",
             type: "folder",
-            path: "root/project/assets/",
+            path: "root/5119b1fc-2d20-5317-a2bd-1287745c894e/fd77888c-c916-508d-bf55-08423a8c96b6/",
             contents: [
-                "icons"
+                "13834866-ec15-53d9-8436-c42dd6bc0a08"
             ]
         },
-        songs: {
-            id: "songs",
+        "b47c6a79-f96c-521f-84f2-73b0c09662bf": {
+            id: "b47c6a79-f96c-521f-84f2-73b0c09662bf",
             name: "songs",
             size: "10kb",
             creator: "Himanshu",
             created_at: "January 17, 2019 at 6:25:58 PM UTC+5:30",
             type: "folder",
-            path: "root/project/assets/",
+            path: "root/5119b1fc-2d20-5317-a2bd-1287745c894e/fd77888c-c916-508d-bf55-08423a8c96b6/",
         },
-        icons: {
-            id: "icons",
+        "13834866-ec15-53d9-8436-c42dd6bc0a08": {
+            id: "13834866-ec15-53d9-8436-c42dd6bc0a08",
             name: "icons",
             size: "10kb",
             creator: "Himanshu",
             created_at: "January 17, 2019 at 6:25:58 PM UTC+5:30",
             type: "folder",
-            path: "root/project/assets/images/",
+            path: "root/5119b1fc-2d20-5317-a2bd-1287745c894e/fd77888c-c916-508d-bf55-08423a8c96b6/40ca135a-ce0c-58e7-9fc0-0509aa28103b/",
             contents: [
-                "icon.svg"
+                "132c4758-aab3-5469-aa90-714da1e3354b"
             ]
         },
-        "icon.svg": {
-            id: "icon.svg",
+        "132c4758-aab3-5469-aa90-714da1e3354b": {
+            id: "132c4758-aab3-5469-aa90-714da1e3354b",
             name: "icon.svg",
             size: "1kb",
             creator: "Himanshu",
             created_at: "January 17, 2019 at 6:25:58 PM UTC+5:30",
             extension: "svg",
-            type: "file"
+            type: "file",
+            path: "root/5119b1fc-2d20-5317-a2bd-1287745c894e/fd77888c-c916-508d-bf55-08423a8c96b6/40ca135a-ce0c-58e7-9fc0-0509aa28103b/13834866-ec15-53d9-8436-c42dd6bc0a08/",
         }
     },
-    currentFolder: 'project',
+    currentFolder: '5119b1fc-2d20-5317-a2bd-1287745c894e',
     error: null
 };
 

@@ -8,7 +8,6 @@ import CreateNewModal from './CreateNewModal';
 import { connect } from 'react-redux';
 import { createFolder, changeFolder } from '../store/actions/folderActions';
 import { createFile } from '../store/actions/fileActions';
-import { stringify } from 'querystring';
 
 class Dashboard extends Component {
     state = {
@@ -59,8 +58,6 @@ class Dashboard extends Component {
         ) ? contents.map(index => structure[index]) : {};
         path = typeof(path) === "string" ? path : '';
 
-        console.log(this.props);
-        
         const parents = path
             .trim()
             .split('/')
@@ -92,7 +89,7 @@ class Dashboard extends Component {
                             e.preventDefault();
                             (
                                 typeof(id) === "string" &&
-                                stringify.length
+                                id.length
                             ) ? this.changeState("displayOptionsFor", id)
                             : this.toggleState("displayOptions");
                         }}
@@ -123,6 +120,7 @@ class Dashboard extends Component {
                             createFolder={createFolder}
                             path={`${path}${currentFolder}/`}
                             createFile={createFile}
+                            structure={structure}
                         />
                     }
                 </div>

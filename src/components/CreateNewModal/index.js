@@ -9,7 +9,8 @@ class CreateNewModal extends Component {
         size: '',
         created_at: '',
         type: 'folder',
-        path: this.props.path
+        path: this.props.path,
+        existingKeys: Object.keys(this.props.structure)
     };
 
     handleChange = (field, value) => {
