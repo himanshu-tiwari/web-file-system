@@ -19,7 +19,6 @@ class CreateNewModal extends Component {
     };
 
     handleSubmit = () => {
-        // console.log(this.state);
         this.props.createFolder(this.state);
     };
 

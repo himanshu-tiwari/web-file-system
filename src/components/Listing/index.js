@@ -18,7 +18,6 @@ const Listing = (props) => {
     const contentList = contents.map(fileFolder => {
         let { name, extension, type } = fileFolder;
         type = typeof(type) === "string" && type.length > 0 ? type : '';
-        console.log(fileFolder);
         
         if (type === "file") {
             return(

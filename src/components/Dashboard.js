@@ -52,7 +52,7 @@ class Dashboard extends Component {
         list = typeof(list) === "object" && Object.keys(list).length > 0 ? list : {};
         const parents = path.trim().split('/').filter(parent => typeof(parent) === "string" && parent.length);
 
-        console.log(this.state);
+        // console.log(this.state);
 
         return(
             <div className="dashboard">

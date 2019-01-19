@@ -106,6 +106,7 @@ const folderReducer = (state = initState, action) => {
     switch (action.type) {
         case 'CREATE_FOLDER':
             console.log(action.data);
+            return state;
             break;
         
         case 'CHANGE_FOLDER':
@@ -113,6 +114,7 @@ const folderReducer = (state = initState, action) => {
                 ...state,
                 currentFolder: action.data
             };
+            break;
         default:
             return state;
             break;
