@@ -121,7 +121,8 @@ const mapStateToProps = (state) => {
     const { structure, currentFolder } = state.folder;
     const folderData = (
         typeof(currentFolder) === "string" &&
-        currentFolder.length > 0
+        currentFolder.length > 0 &&
+        structure.hasOwnProperty(currentFolder)
     ) ? structure[currentFolder] : structure.root;
     const { contents, parents, path } = folderData;
 

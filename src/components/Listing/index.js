@@ -34,7 +34,10 @@ const Listing = (props) => {
                     {
                         displayOptions &&
                         displayOptionsFor===id &&
-                        <OptionsMenu toggleInfoModal={toggleInfoModal} />
+                        <OptionsMenu
+                            toggleInfoModal={toggleInfoModal}
+                            peekInFolder={() => peekInFolder(id)}
+                        />
                     }
                 </div>
             );
@@ -45,7 +48,7 @@ const Listing = (props) => {
                 <div
                     className="file-folder-div"
                     onContextMenu={(e) => toggleOptionsMenu(e, name)}
-                    onDoubleClick={(e) => peekInFolder(e.target.closest(".file-folder-div").id)}
+                    onDoubleClick={(e) => peekInFolder(id)}
                     key={name}
                     id={id}
                 >
@@ -54,7 +57,10 @@ const Listing = (props) => {
                     {
                         displayOptions &&
                         displayOptionsFor===id &&
-                        <OptionsMenu toggleInfoModal={toggleInfoModal} />
+                        <OptionsMenu
+                            toggleInfoModal={toggleInfoModal} 
+                            peekInFolder={() => peekInFolder(id)}
+                        />
                     }
                 </div>
             );
