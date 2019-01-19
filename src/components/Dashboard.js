@@ -39,37 +39,44 @@ class Dashboard extends Component {
         }
     }
 
+    peekInFolder = (id) => {
+        const { changeFolder } = this.props;
+        typeof(id) === "string" && id.length > 0 ? changeFolder(id) : changeFolder("root");
+    }
+
     render() {
         const { displayOptions, displayOptionsFor, displayInfoModal, displayCreateNewModal } = this.state;
 
-        let { contents, path, list, createFolder, structure, changeFolder } = this.props;
+        let { contents, path, createFolder, structure } = this.props;
         contents = (
             typeof(contents) === "object" &&
             contents instanceof Array &&
             contents.length > 0
         ) ? contents.map(index => structure[index]) : {};
         path = typeof(path) === "string" ? path : '';
-        list = typeof(list) === "object" && Object.keys(list).length > 0 ? list : {};
-        const parents = path.trim().split('/').filter(parent => typeof(parent) === "string" && parent.length);
 
-        // console.log(this.state);
+        const parents = path
+            .trim()
+            .split('/')
+            .filter(parent => typeof(parent) === "string" && parent.length);
 
         return(
             <div className="dashboard">
-                <Sidebar list={list} disabled={displayInfoModal || displayCreateNewModal} />
+                <Sidebar
+                    structure={structure}
+                    disabled={displayInfoModal || displayCreateNewModal}
+                    peekInFolder={(id) => this.peekInFolder(id)}
+                />
 
                 <div className="main">
                     <Navbar
                         structure={structure}
                         folderUp={() => {
                             const id = parents[parents.length -1];
-                            typeof(id) === "string" && id.length > 0 ? changeFolder(id) : changeFolder("root");
+                            this.peekInFolder(id);
                         }}
                         parents={parents}
-                        peekInFolder={(id) => {
-                            console.log(id);
-                            typeof(id) === "string" && id.length > 0 ? changeFolder(id) : changeFolder("root");
-                        }}
+                        peekInFolder={(id) => this.peekInFolder(id)}
                     />
                     
                     <Listing
@@ -82,9 +89,7 @@ class Dashboard extends Component {
                         toggleInfoModal={() => this.toggleState("displayInfoModal")}
                         toggleCreateNewModal={() => this.toggleState("displayCreateNewModal")}
                         contents={Object.values(contents)}
-                        peekInFolder={(id) => {
-                            typeof(id) === "string" && id.length > 0 ? changeFolder(id) : changeFolder("root");
-                        }}
+                        peekInFolder={(id) => this.peekInFolder(id)}
                     />
 
                     { 
@@ -92,7 +97,7 @@ class Dashboard extends Component {
                         &&
                         <InfoModal
                             currentTarget={contents.filter(fileFolder => {
-                                return fileFolder.name.toLowerCase().split(" ").join("~") === displayOptionsFor;
+                                return fileFolder.id === displayOptionsFor;
                             })}
                             toggleInfoModal={() => this.toggleState("displayInfoModal")}
                         />
@@ -114,15 +119,17 @@ class Dashboard extends Component {
 
 const mapStateToProps = (state) => {
     const { structure, currentFolder } = state.folder;
-    const folderContents = typeof(currentFolder) === "string" && currentFolder.length > 0 ? structure[currentFolder] : structure.root;
-    const { contents, parents, path } = folderContents;
+    const folderData = (
+        typeof(currentFolder) === "string" &&
+        currentFolder.length > 0
+    ) ? structure[currentFolder] : structure.root;
+    const { contents, parents, path } = folderData;
 
     return {
         structure,
         contents,
         parents,
         path,
-        list: state.list
     };
 };
 

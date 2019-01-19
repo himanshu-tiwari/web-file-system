@@ -8,11 +8,12 @@
     font-family: Lato;
     transition-duration: 20s;
 
-    .folder {
+    .root-folder {
         padding-top: 2.29rem;
         padding-left: 2.29rem;
         font-size: 0.86rem;
         color: #AFB2B6;
+        cursor: pointer;
     }
 
     .directory-structure {
