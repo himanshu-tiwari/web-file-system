@@ -10,19 +10,19 @@ class OptionsMenu extends Component {
     };
 
     handleOptionsMenu = (e) => {
-        if (this.node.contains(e.target)) {
-            return;
-        } else {
+        // if (this.node.contains(e.target)) {
+        //     return;
+        // } else {
             this.props.toggleOptionsMenu(e);
-        }
+        // }
     }
 
     render() {
-        const { toggleInfoModal, peekInFolder } = this.props;
+        const { toggleInfoModal, peekInFolder, openOptionAvailable } = this.props;
         
         return(
             <div className="options-menu" ref={node => this.node = node}>
-                <p onClick={peekInFolder}>Open</p>
+                { openOptionAvailable && <p onClick={peekInFolder}>Open</p> }
                 <p onClick={toggleInfoModal}>Get info</p>
                 <p className="delete">Delete</p>
             </div>

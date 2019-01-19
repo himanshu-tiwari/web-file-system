@@ -5,7 +5,7 @@ const initState = {
             name: "root",
             size: "1mb",
             creator: "Himanshu",
-            createdAt: "January 17, 2019 at 6:25:58 PM UTC+5:30",
+            created_at: "January 17, 2019 at 6:25:58 PM UTC+5:30",
             path: '/',
             type: "folder",
             contents: [
@@ -17,7 +17,7 @@ const initState = {
             name: "project",
             size: "10kb",
             creator: "Himanshu",
-            createdAt: "January 17, 2019 at 6:25:58 PM UTC+5:30",
+            created_at: "January 17, 2019 at 6:25:58 PM UTC+5:30",
             path: 'root/',
             type: "folder",
             contents: [
@@ -31,7 +31,7 @@ const initState = {
             name: "index.html",
             size: "10kb",
             creator: "Himanshu",
-            createdAt: "January 17, 2019 at 6:25:58 PM UTC+5:30",
+            created_at: "January 17, 2019 at 6:25:58 PM UTC+5:30",
             extension: "html",
             type: "file"
         },
@@ -40,7 +40,7 @@ const initState = {
             name: "index.js",
             size: "10kb",
             creator: "Himanshu",
-            createdAt: "January 17, 2019 at 6:25:58 PM UTC+5:30",
+            created_at: "January 17, 2019 at 6:25:58 PM UTC+5:30",
             extension: "js",
             type: "file"
         },
@@ -49,7 +49,7 @@ const initState = {
             name: "Assets",
             size: "10kb",
             creator: "Himanshu",
-            createdAt: "January 17, 2019 at 6:25:58 PM UTC+5:30",
+            created_at: "January 17, 2019 at 6:25:58 PM UTC+5:30",
             type: "folder",
             path: "root/project/",
             contents: [
@@ -61,7 +61,7 @@ const initState = {
             name: "images",
             size: "10kb",
             creator: "Himanshu",
-            createdAt: "January 17, 2019 at 6:25:58 PM UTC+5:30",
+            created_at: "January 17, 2019 at 6:25:58 PM UTC+5:30",
             type: "folder",
             path: "root/project/assets/",
             contents: [
@@ -73,7 +73,7 @@ const initState = {
             name: "songs",
             size: "10kb",
             creator: "Himanshu",
-            createdAt: "January 17, 2019 at 6:25:58 PM UTC+5:30",
+            created_at: "January 17, 2019 at 6:25:58 PM UTC+5:30",
             type: "folder",
             path: "root/project/assets/",
         },
@@ -82,7 +82,7 @@ const initState = {
             name: "icons",
             size: "10kb",
             creator: "Himanshu",
-            createdAt: "January 17, 2019 at 6:25:58 PM UTC+5:30",
+            created_at: "January 17, 2019 at 6:25:58 PM UTC+5:30",
             type: "folder",
             path: "root/project/assets/images/",
             contents: [
@@ -94,7 +94,7 @@ const initState = {
             name: "icon.svg",
             size: "1kb",
             creator: "Himanshu",
-            createdAt: "January 17, 2019 at 6:25:58 PM UTC+5:30",
+            created_at: "January 17, 2019 at 6:25:58 PM UTC+5:30",
             extension: "svg",
             type: "file"
         }

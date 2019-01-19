@@ -38,6 +38,7 @@ const Listing = (props) => {
                             toggleInfoModal={toggleInfoModal}
                             peekInFolder={() => peekInFolder(id)}
                             toggleOptionsMenu={toggleOptionsMenu}
+                            openOptionAvailable={false}
                         />
                     }
                 </div>
@@ -62,6 +63,7 @@ const Listing = (props) => {
                             toggleInfoModal={toggleInfoModal} 
                             peekInFolder={() => peekInFolder(id)}
                             toggleOptionsMenu={toggleOptionsMenu}
+                            openOptionAvailable={true}
                         />
                     }
                 </div>
