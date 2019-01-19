@@ -79,6 +79,9 @@ class Dashboard extends Component {
                         toggleInfoModal={() => this.toggleState("displayInfoModal")}
                         toggleCreateNewModal={() => this.toggleState("displayCreateNewModal")}
                         contents={Object.values(contents)}
+                        peekInFolder={(id) => {
+                            typeof(id) === "string" && id.length > 0 ? changeFolder(id) : changeFolder("root");
+                        }}
                     />
 
                     { 

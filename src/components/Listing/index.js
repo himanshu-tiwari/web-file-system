@@ -12,29 +12,50 @@ const Listing = (props) => {
         toggleOptionsMenu,
         toggleInfoModal,
         toggleCreateNewModal,
-        contents
+        contents,
+        peekInFolder
     } = props;
 
     const contentList = contents.map(fileFolder => {
-        let { name, extension, type } = fileFolder;
+        let { id, name, extension, type } = fileFolder;
         type = typeof(type) === "string" && type.length > 0 ? type : '';
         
         if (type === "file") {
             return(
-                <div className="file-folder-div file-div" data-extension={extension} onContextMenu={(e) => toggleOptionsMenu(e, name)} key={name}>
+                <div
+                    className="file-folder-div file-div"
+                    data-extension={extension}
+                    onContextMenu={(e) => toggleOptionsMenu(e, name)}
+                    key={name}
+                    id={id}
+                >
                     <img src={file} alt="file-icon" />
                     <p>{name}</p>
-                    { displayOptions && displayOptionsFor===name.toLowerCase().split(" ").join("~") && <OptionsMenu toggleInfoModal={toggleInfoModal} /> }
+                    {
+                        displayOptions &&
+                        displayOptionsFor===id &&
+                        <OptionsMenu toggleInfoModal={toggleInfoModal} />
+                    }
                 </div>
             );
         }
 
         if (type === "folder") {
             return(
-                <div className="file-folder-div" onContextMenu={(e) => toggleOptionsMenu(e, name)} key={name}>
+                <div
+                    className="file-folder-div"
+                    onContextMenu={(e) => toggleOptionsMenu(e, name)}
+                    onDoubleClick={(e) => peekInFolder(e.target.closest(".file-folder-div").id)}
+                    key={name}
+                    id={id}
+                >
                     <img src={folder} alt="file-icon" />
                     <p>{name}</p>
-                    { displayOptions && displayOptionsFor===name.toLowerCase() && <OptionsMenu toggleInfoModal={toggleInfoModal} /> }
+                    {
+                        displayOptions &&
+                        displayOptionsFor===id &&
+                        <OptionsMenu toggleInfoModal={toggleInfoModal} />
+                    }
                 </div>
             );
         }
