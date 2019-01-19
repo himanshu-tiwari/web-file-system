@@ -58,16 +58,17 @@
                 color: #535B62;
             }
         }
-    }
-
-    ul.active > li > .internal-directories {
-        display: block;
-    }
-    ul.active > li > .text-span img {
-        transform: rotate(180deg);
+        li.active > .internal-directories {
+            display: block;
+        }
+        li.active > .text-span img {
+            transform: rotate(180deg);
+        }
     }
 }
-
+.sidebar.disabled {
+    pointer-events: none;
+}
 @media(max-width: 767px) {
     .sidebar {
         display: none;
