@@ -13,7 +13,9 @@ const Listing = (props) => {
         toggleInfoModal,
         toggleCreateNewModal,
         contents,
-        peekInFolder
+        peekInFolder,
+        deleteFile,
+        deleteFolder
     } = props;
 
     const contentList = contents.map(fileFolder => {
@@ -39,6 +41,7 @@ const Listing = (props) => {
                             peekInFolder={() => peekInFolder(id)}
                             toggleOptionsMenu={toggleOptionsMenu}
                             openOptionAvailable={false}
+                            deleteFileFolder={() => deleteFile(id)}
                         />
                     }
                 </div>
@@ -64,6 +67,7 @@ const Listing = (props) => {
                             peekInFolder={() => peekInFolder(id)}
                             toggleOptionsMenu={toggleOptionsMenu}
                             openOptionAvailable={true}
+                            deleteFileFolder={() => deleteFolder(id)}
                         />
                     }
                 </div>

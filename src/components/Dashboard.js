@@ -7,7 +7,7 @@ import InfoModal from './InfoModal';
 import CreateNewModal from './CreateNewModal';
 import { connect } from 'react-redux';
 import { createFolder, changeFolder } from '../store/actions/folderActions';
-import { createFile } from '../store/actions/fileActions';
+import { createFile, deleteFile } from '../store/actions/fileActions';
 
 class Dashboard extends Component {
     state = {
@@ -50,7 +50,7 @@ class Dashboard extends Component {
     render() {
         const { displayOptions, displayOptionsFor, displayInfoModal, displayCreateNewModal } = this.state;
 
-        let { contents, path, createFolder, structure, currentFolder, createFile } = this.props;
+        let { contents, path, createFolder, structure, currentFolder, createFile, deleteFile } = this.props;
         contents = (
             typeof(contents) === "object" &&
             contents instanceof Array &&
@@ -99,6 +99,7 @@ class Dashboard extends Component {
                         toggleCreateNewModal={() => this.toggleState("displayCreateNewModal")}
                         contents={Object.values(contents)}
                         peekInFolder={(id) => this.peekInFolder(id)}
+                        deleteFile={(id) => deleteFile(structure[id])}
                     />
 
                     { 
@@ -151,7 +152,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         createFolder: (folder) => dispatch(createFolder(folder)),
         changeFolder: (id) => dispatch(changeFolder(id)),
-        createFile: (file) => dispatch(createFile(file))
+        createFile: (file) => dispatch(createFile(file)),
+        deleteFile: (file) => dispatch(deleteFile(file))
     };
 };
 

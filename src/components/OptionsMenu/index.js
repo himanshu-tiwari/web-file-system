@@ -18,13 +18,13 @@ class OptionsMenu extends Component {
     }
 
     render() {
-        const { toggleInfoModal, peekInFolder, openOptionAvailable } = this.props;
+        const { toggleInfoModal, peekInFolder, openOptionAvailable, deleteFileFolder } = this.props;
         
         return(
             <div className="options-menu" ref={node => this.node = node}>
                 { openOptionAvailable && <p onClick={peekInFolder}>Open</p> }
                 <p onClick={toggleInfoModal}>Get info</p>
-                <p className="delete">Delete</p>
+                <p onClick={deleteFileFolder} className="delete">Delete</p>
             </div>
         );
     }
