@@ -6,7 +6,7 @@ import folder from '../../assets/icons/folder.png';
 
 const InfoModal = (props) => {
     const { toggleInfoModal, currentTarget } = props;
-    const { name, size, type, creator, createdAt, extension } = currentTarget;
+    const { name, size, type, creator, created_at, extension } = currentTarget;
     
     return(
         <div className="info-modal-overlay">
@@ -45,7 +45,7 @@ const InfoModal = (props) => {
 
                         <p>
                             <span className="left part">Created date:</span>
-                            <span className="right part">{ createdAt }</span>
+                            <span className="right part">{ created_at }</span>
                         </p>
                     </div>
                 </div>
