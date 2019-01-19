@@ -9,6 +9,10 @@
         max-width: 100%;
         vertical-align: middle;
         margin-right: 1.99rem;
+        cursor: pointer;
+    }
+    img.disabled {
+        pointer-events: none;
     }
 
     .directory-name {

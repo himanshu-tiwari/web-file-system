@@ -3,19 +3,23 @@ import './index.scss';
 import up from '../../assets/icons/navbar-up.png';
 
 const Navbar = (props) => {
-    const { parents, path } = props;
+    const { structure, path, folderUp, parents } = props;
 
-    const pathString = path.split('/').map((parent, i) => {
-        if (i === path.split('/').length-1) {
-            return <span className="directory-name" key={i}>{ parents[parent] }</span>;
+    const pathString = parents.map((parent, i) => {
+        if (structure.hasOwnProperty(parent)) {
+            if (i === parents.length-1) {
+                return <span className="directory-name" key={i}>{ structure[parent].name }</span>;
+            } else {
+                return <span className="directory-name" key={i}>{ structure[parent].name } <span className="slash">/ </span></span>;
+            }
         } else {
-            return <span className="directory-name" key={i}>{ parents[parent] } <span className="slash">/ </span></span>;
+            return '';
         }
     });
 
     return(
         <div className="navbar">
-            <img src={up} alt="up-icon"/>
+            <img src={up} alt="up-icon" onClick={folderUp} className={ !(parents.length > 0) ? 'disabled' : '' } />
             { pathString }
         </div>
     )
