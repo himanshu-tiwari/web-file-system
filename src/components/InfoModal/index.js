@@ -6,18 +6,26 @@ import folder from '../../assets/icons/folder.png';
 
 const InfoModal = (props) => {
     const { toggleInfoModal, currentTarget } = props;
-    const { name, size, creator, createdAt } = currentTarget[0];
+    const { name, size, type, creator, createdAt, extension } = currentTarget;
     
     return(
         <div className="info-modal-overlay">
             <div className="info-modal">
                 <div className="text">
-                    <p className="heading">File Info</p>
+                    <p className="heading">{`${type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()} Info`}</p>
                     <img src={close} alt="close-icon" className="close" onClick={toggleInfoModal} />
-
-                    <div data-extension="html" className="file-div">
-                        <img src={file} alt="file-icon" />
-                    </div>
+                        {
+                            type === "file" &&
+                            <div data-extension={extension} className="file-div">
+                                <img src={file} alt="file-icon" />
+                            </div>
+                        }
+                        {
+                            type === "folder" &&
+                            <div className="folder-div">
+                                <img src={folder} alt="folder-icon" />
+                            </div>
+                        }
 
                     <div className="details">
                         <p>
