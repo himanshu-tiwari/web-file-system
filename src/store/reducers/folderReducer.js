@@ -99,20 +99,66 @@ const initState = {
             type: "file"
         }
     },
-    currentFolder: 'project'
+    currentFolder: 'project',
+    error: null
 };
 
 const folderReducer = (state = initState, action) => {
     switch (action.type) {
         case 'CREATE_FOLDER':
-            console.log(action.data);
-            return state;
+            return {
+                ...state,
+                structure: {
+                    ...state.structure,
+                    [action.data.id]: action.data,
+                    [action.data.parent] : {
+                        ...state.structure[action.data.parent],
+                        contents: [
+                            ...state.structure[action.data.parent].contents,
+                            action.data.id
+                        ]
+                    }
+                },
+                error: null
+            };
         
+        case 'CREATE_FOLDER_ERROR':
+            console.log(action.error);
+            return {
+                ...state,
+                error: action.error
+            }
+            
         case 'CHANGE_FOLDER':
             return {
                 ...state,
                 currentFolder: action.data
             };
+        
+        case 'CREATE_FILE':
+            return {
+                ...state,
+                structure: {
+                    ...state.structure,
+                    [action.data.id]: action.data,
+                    [action.data.parent] : {
+                        ...state.structure[action.data.parent],
+                        contents: [
+                            ...state.structure[action.data.parent].contents,
+                            action.data.id
+                        ]
+                    }
+                },
+                error: null
+            };
+        
+        case 'CREATE_FILE_ERROR':
+            console.log(action.error);
+            return {
+                ...state,
+                error: action.error
+            }
+
         default:
             return state;
     }

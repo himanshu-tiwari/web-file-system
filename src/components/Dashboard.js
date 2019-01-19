@@ -7,6 +7,7 @@ import InfoModal from './InfoModal';
 import CreateNewModal from './CreateNewModal';
 import { connect } from 'react-redux';
 import { createFolder, changeFolder } from '../store/actions/folderActions';
+import { createFile } from '../store/actions/fileActions';
 import { stringify } from 'querystring';
 
 class Dashboard extends Component {
@@ -41,12 +42,16 @@ class Dashboard extends Component {
     peekInFolder = (id) => {
         const { changeFolder } = this.props;
         typeof(id) === "string" && id.length > 0 ? changeFolder(id) : changeFolder("root");
+        this.setState({
+            ...this.state,
+            displayOptions: false
+        });
     }
 
     render() {
         const { displayOptions, displayOptionsFor, displayInfoModal, displayCreateNewModal } = this.state;
 
-        let { contents, path, createFolder, structure, currentFolder } = this.props;
+        let { contents, path, createFolder, structure, currentFolder, createFile } = this.props;
         contents = (
             typeof(contents) === "object" &&
             contents instanceof Array &&
@@ -54,6 +59,8 @@ class Dashboard extends Component {
         ) ? contents.map(index => structure[index]) : {};
         path = typeof(path) === "string" ? path : '';
 
+        console.log(this.props);
+        
         const parents = path
             .trim()
             .split('/')
@@ -114,6 +121,8 @@ class Dashboard extends Component {
                         <CreateNewModal
                             toggleCreateNewModal={() => this.toggleState("displayCreateNewModal")}
                             createFolder={createFolder}
+                            path={`${path}${currentFolder}/`}
+                            createFile={createFile}
                         />
                     }
                 </div>
@@ -143,7 +152,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         createFolder: (folder) => dispatch(createFolder(folder)),
-        changeFolder: (id) => dispatch(changeFolder(id))
+        changeFolder: (id) => dispatch(changeFolder(id)),
+        createFile: (file) => dispatch(createFile(file))
     };
 };
 

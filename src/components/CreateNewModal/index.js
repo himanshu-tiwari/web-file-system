@@ -7,8 +7,9 @@ class CreateNewModal extends Component {
         name: '',
         creator: '',
         size: '',
-        date: '',
-        type: 'folder'
+        created_at: '',
+        type: 'folder',
+        path: this.props.path
     };
 
     handleChange = (field, value) => {
@@ -19,11 +20,29 @@ class CreateNewModal extends Component {
     };
 
     handleSubmit = () => {
-        this.props.createFolder(this.state);
+        if (this.state.type === 'folder') {
+            this.props.createFolder(this.state);
+        } else {
+            this.props.createFile(this.state);
+        }
+        
+        this.resetModal();
+        this.props.toggleCreateNewModal();
+    };
+
+    resetModal = () => {
+        this.setState({
+            name: '',
+            creator: '',
+            size: '',
+            created_at: '',
+            type: 'folder',
+            path: this.props.path
+        });
     };
 
     render() {
-        const { name, creator, size, date, type } = this.state;
+        const { name, creator, size, created_at, type } = this.state;
         const { toggleCreateNewModal } = this.props;
 
         return(
@@ -34,17 +53,17 @@ class CreateNewModal extends Component {
                         <img src={close} alt="close-icon" className="close" onClick={toggleCreateNewModal} />
 
                         <div className="details">
-
-                        <p>
-                            <span
-                                className={`part left ${type==="file" && 'active'}`}
-                                onClick={() => this.handleChange("type", "file")}
-                            >File</span>
-                            <span
-                                className={`part right ${type==="folder" && 'active'}`}
-                                onClick={() => this.handleChange("type", "folder")}
-                            >Folder</span>
-                        </p>
+                            <p>
+                                <span
+                                    className={`part left ${type==="file" && 'active'}`}
+                                    onClick={() => this.handleChange("type", "file")}
+                                >File</span>
+                                <span
+                                    className={`part right ${type==="folder" && 'active'}`}
+                                    onClick={() => this.handleChange("type", "folder")}
+                                >Folder</span>
+                            </p>
+                            
                             <input
                                 type="text"
                                 required
@@ -73,8 +92,8 @@ class CreateNewModal extends Component {
                                 type="date"
                                 required
                                 placeholder="Date"
-                                value={date}
-                                onChange={(e) => this.handleChange("date", e.target.value)}
+                                value={created_at}
+                                onChange={(e) => this.handleChange("created_at", e.target.value)}
                             />
 
                             <button onClick={this.handleSubmit}>Create</button>
