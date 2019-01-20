@@ -15,7 +15,7 @@ class Dashboard extends Component {
         displayOptions: false,
         displayInfoModal: false,
         displayCreateNewModal: false,
-        searchTerm: null
+        searchTerm: ''
     };
 
     toggleState = (field) => {
@@ -45,7 +45,7 @@ class Dashboard extends Component {
         this.setState({
             ...this.state,
             displayOptions: false,
-            searchTerm: null
+            searchTerm: ''
         });
     }
 
