@@ -121,7 +121,16 @@ class Dashboard extends Component {
                         contents={typeof(searchTerm) === "string" && searchTerm.length > 0 ? Object.values(structure) : Object.values(contents)}
                         peekInFolder={(id) => this.peekInFolder(id)}
                         deleteFile={(id) => deleteFile(structure[id])}
-                        deleteFolder={(id) => deleteFolder(structure[id])}
+                        deleteFolder={(id) => {
+                            const children = Object.values(structure)
+                                .filter(fileFolder => fileFolder.path.indexOf(id) > -1)
+                                .map(fileFolder => fileFolder.id);
+                            const folder = {
+                                ...structure[id],
+                                children
+                            };
+                            deleteFolder(folder);
+                        }}
                         searchTerm={searchTerm}
                     />
 
