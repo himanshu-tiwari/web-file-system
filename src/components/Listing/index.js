@@ -79,7 +79,7 @@ const Listing = (props) => {
     };
     const contentList = contents.map(fileFolder => {
         if (typeof(searchTerm) === "string" && searchTerm.length > 0) {
-            if (fileFolder.name.indexOf(searchTerm) > -1) {
+            if (fileFolder.name.toUpperCase().indexOf(searchTerm.toUpperCase()) > -1) {
                 return createList(fileFolder);
             } else {
                 return '';
